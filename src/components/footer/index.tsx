@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import logo from "/src/assets/shared/desktop/logo.svg";
 
 function Footer() {
@@ -9,18 +10,26 @@ function Footer() {
           <img className="select-none" src={logo} alt="logo" />
         </div>
         <div className="md:flex-row md:gap-[2rem] flex flex-col items-center gap-[1rem]">
-          <button className="md:hover:translate-x-[0.2rem] md:hover:translate-y-[-0.2rem] text-[0.8125rem] leading-[1.5rem] tracking-[0.125rem] text-[#FFF] w-max hover:text-[#D87D4A] hover:translate-x-[-0.2rem] transition-all duration-300 outline-none select-none">
-            HOME
-          </button>
-          <button className="md:hover:translate-x-[0.2rem] md:hover:translate-y-[-0.2rem] text-[0.8125rem] leading-[1.5rem] tracking-[0.125rem] text-[#FFF] w-max hover:text-[#D87D4A] hover:translate-y-[-0.2rem] transition-all duration-300 outline-none select-none">
-            HEADPHONES
-          </button>
-          <button className="md:hover:translate-y-[-0.2rem] text-[0.8125rem] leading-[1.5rem] tracking-[0.125rem] text-[#FFF] w-max hover:text-[#D87D4A] hover:translate-x-[0.2rem] transition-all duration-300 outline-none select-none">
-            SPEAKERS
-          </button>
-          <button className="md:hover:translate-x-[0.2rem] md:hover:translate-y-[-0.2rem] text-[0.8125rem] leading-[1.5rem] tracking-[0.125rem] text-[#FFF] w-max hover:text-[#D87D4A] hover:translate-y-[-0.2rem] transition-all duration-300 outline-none select-none">
-            EARPHONES
-          </button>
+          <Link to="/">
+            <button className="md:hover:translate-x-[0.2rem] md:hover:translate-y-[-0.2rem] text-[0.8125rem] leading-[1.5rem] tracking-[0.125rem] text-[#FFF] w-max hover:text-[#D87D4A] hover:translate-x-[-0.2rem] transition-all duration-300 outline-none select-none">
+              HOME
+            </button>
+          </Link>
+          <Link to="/headphones">
+            <button className="md:hover:translate-x-[0.2rem] md:hover:translate-y-[-0.2rem] text-[0.8125rem] leading-[1.5rem] tracking-[0.125rem] text-[#FFF] w-max hover:text-[#D87D4A] hover:translate-y-[-0.2rem] transition-all duration-300 outline-none select-none">
+              HEADPHONES
+            </button>
+          </Link>
+          <Link to="/speakers">
+            <button className="md:hover:translate-y-[-0.2rem] text-[0.8125rem] leading-[1.5rem] tracking-[0.125rem] text-[#FFF] w-max hover:text-[#D87D4A] hover:translate-x-[0.2rem] transition-all duration-300 outline-none select-none">
+              SPEAKERS
+            </button>
+          </Link>
+          <Link to="/earphones">
+            <button className="md:hover:translate-x-[0.2rem] md:hover:translate-y-[-0.2rem] text-[0.8125rem] leading-[1.5rem] tracking-[0.125rem] text-[#FFF] w-max hover:text-[#D87D4A] hover:translate-y-[-0.2rem] transition-all duration-300 outline-none select-none">
+              EARPHONES
+            </button>
+          </Link>
         </div>
       </div>
       <p className="lg:text-start lg:max-w-[35.5rem] md:max-w-[44rem] md:text-start md:mb-[5rem] text-[1rem] leading-[1.5rem] font-[400] text-[#FFF] max-w-[21rem] w-full opacity-[50%] text-center mb-[3rem]">

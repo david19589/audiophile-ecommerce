@@ -4,7 +4,7 @@ import manWithHeadphoneImgDesktop from "/src/assets/shared/desktop/image-best-ge
 
 function Info() {
   return (
-    <div className="lg:flex-row-reverse flex flex-col items-center max-w-[69.375rem] w-full ">
+    <div className="lg:flex-row-reverse lg:mb-[12.5rem] md:mb-[6rem] flex flex-col items-center max-w-[69.375rem] w-full mb-[7rem]">
       <img
         className="md:hidden w-full rounded-lg mb-[2.5rem]"
         src={manWithHeadphoneImg}

@@ -4,12 +4,15 @@ import cartIcon from "/src/assets/shared/desktop/icon-cart.svg";
 import Menu from "./components/menu";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
+import { Link } from "react-router-dom";
+import Cart from "./components/cart";
+import { useCart } from "../../context/cartContext";
 
-function Header(props: {
-  openMenu: boolean;
-  setOpenMenu: (status: boolean) => void;
-}) {
+function Header() {
+  const [openMenu, setOpenMenu] = useState(false);
+  const [openCart, setOpenCart] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { cart, finished } = useCart();
 
   const handleScroll = () => {
     if (window.scrollY > 0) {
@@ -26,6 +29,17 @@ function Header(props: {
     };
   }, []);
 
+  useEffect(() => {
+    if (openMenu || openCart || finished) {
+      document.body.style.overflowY = "hidden";
+    } else {
+      document.body.style.overflowY = "auto";
+    }
+    return () => {
+      document.body.style.overflowY = "auto";
+    };
+  }, [openMenu, openCart, finished]);
+
   return (
     <div
       className={clsx(
@@ -36,7 +50,7 @@ function Header(props: {
       <div className="flex items-center gap-[3rem]">
         <button
           onClick={() => {
-            props.setOpenMenu(!props.openMenu);
+            setOpenMenu(!openMenu);
           }}
           className="outline-none"
         >
@@ -46,26 +60,43 @@ function Header(props: {
             alt="menuIcon"
           />
         </button>
-        {props.openMenu && <Menu openMenu={props.openMenu} />}
-        <img className="md:flex hidden select-none" src={logo} alt="logo" />
+        {openMenu && <Menu openMenu={openMenu} setOpenMenu={setOpenMenu} />}
+        {openCart && <Cart setOpenCart={setOpenCart} />}
+        <Link to="/">
+          <img className="md:flex hidden select-none" src={logo} alt="logo" />
+        </Link>
       </div>
       <div className="lg:flex hidden gap-[2rem]">
-        <button className="text-[0.8125rem] leading-[1.5rem] tracking-[0.125rem] text-[#FFF] hover:text-[#D87D4A] hover:translate-y-[-0.2rem] transition-all duration-300 outline-none select-none">
-          HOME
-        </button>
-        <button className="text-[0.8125rem] leading-[1.5rem] tracking-[0.125rem] text-[#FFF] hover:text-[#D87D4A] hover:translate-y-[-0.2rem] transition-all duration-300 outline-none select-none">
-          HEADPHONES
-        </button>
-        <button className="text-[0.8125rem] leading-[1.5rem] tracking-[0.125rem] text-[#FFF] hover:text-[#D87D4A] hover:translate-y-[-0.2rem] transition-all duration-300 outline-none select-none">
-          SPEAKERS
-        </button>
-        <button className="text-[0.8125rem] leading-[1.5rem] tracking-[0.125rem] text-[#FFF] hover:text-[#D87D4A] hover:translate-y-[-0.2rem] transition-all duration-300 outline-none select-none">
-          EARPHONES
-        </button>
+        <Link to="/">
+          <button className="text-[0.8125rem] leading-[1.5rem] tracking-[0.125rem] text-[#FFF] hover:text-[#D87D4A] hover:translate-y-[-0.2rem] transition-all duration-300 outline-none select-none">
+            HOME
+          </button>
+        </Link>
+        <Link to="/headphones">
+          <button className="text-[0.8125rem] leading-[1.5rem] tracking-[0.125rem] text-[#FFF] hover:text-[#D87D4A] hover:translate-y-[-0.2rem] transition-all duration-300 outline-none select-none">
+            HEADPHONES
+          </button>
+        </Link>
+        <Link to="/speakers">
+          <button className="text-[0.8125rem] leading-[1.5rem] tracking-[0.125rem] text-[#FFF] hover:text-[#D87D4A] hover:translate-y-[-0.2rem] transition-all duration-300 outline-none select-none">
+            SPEAKERS
+          </button>
+        </Link>
+        <Link to="/earphones">
+          <button className="text-[0.8125rem] leading-[1.5rem] tracking-[0.125rem] text-[#FFF] hover:text-[#D87D4A] hover:translate-y-[-0.2rem] transition-all duration-300 outline-none select-none">
+            EARPHONES
+          </button>
+        </Link>
       </div>
       <img className="md:hidden select-none" src={logo} alt="logo" />
-      <button className="outline-none">
+      <button
+        onClick={() => {
+          setOpenCart(!openCart);
+        }}
+        className={clsx(openCart && "lg:mr-[1.06rem]", "outline-none")}
+      >
         <img className="select-none" src={cartIcon} alt="cartIcon" />
+        <span className="text-[#FFF] ">{cart.length}</span>
       </button>
     </div>
   );

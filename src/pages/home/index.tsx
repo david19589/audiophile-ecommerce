@@ -1,21 +1,16 @@
-import CategoryTypes from "../category-types";
+import CategoryTypes from "../../components/category-types";
 import SpeakerImg from "/src/assets/product-zx9-speaker/mobile/image-zx9-speaker-removebg-preview.png";
 import SpeakerImgDesktop from "/src/assets/product-zx9-speaker/desktop/image-product-removebg-preview1.jpg";
 import earphonesImg from "/src/assets/home/mobile/image-earphones-yx1.jpg";
 import earphonesImgTablet from "/src/assets/home/tablet/image-earphones-yx1.jpg";
 import earphonesImgDesktop from "/src/assets/home/desktop/image-earphones-yx1.jpg";
-import Info from "../info";
-import Footer from "../footer";
-import { useState } from "react";
-import Header from "../header";
+import Info from "../../components/info";
+import { Link } from "react-router-dom";
 
 function Home() {
-  const [openMenu, setOpenMenu] = useState(false);
-
   return (
-    <div className="flex flex-col items-center">
-      <Header openMenu={openMenu} setOpenMenu={setOpenMenu} />
-      <div className="lg:px-[10rem] lg:bg-[url('/src/assets/home/desktop/image-hero.jpg')] lg:mb-[10rem] md:px-[2.5rem] md:bg-[url('/src/assets/home/tablet/image-header.jpg')] md:md:mb-[6rem] flex flex-col items-center bg-[#191919] w-full bg-[url('/src/assets/home/mobile/image-header.jpg')] bg-cover bg-bottom px-[1.5rem] py-[2rem] mb-[5.8rem]">
+    <div className="flex flex-col items-center bg-[#FAFAFA]">
+      <div className="lg:px-[10rem] lg:bg-[url('/src/assets/home/desktop/image-hero.jpg')] lg:mb-[10rem] md:px-[2.5rem] md:bg-[url('/src/assets/home/tablet/image-header.jpg')] md:mb-[6rem] flex flex-col items-center bg-[#191919] w-full bg-[url('/src/assets/home/mobile/image-header.jpg')] bg-cover bg-bottom px-[1.5rem] py-[2rem] mb-[5.8rem]">
         <div className="lg:items-start lg:w-full flex flex-col items-center mb-[7rem] pt-[9rem] h-full">
           <h2 className="md:mb-[1.5rem] text-[0.9rem] leading-[1.2rem] tracking-[0.625rem] font-[400] text-[#FFF] opacity-[49.64%] mb-[1rem]">
             NEW PRODUCT
@@ -27,12 +22,14 @@ function Home() {
             Experience natural, lifelike audio and exceptional build quality
             made for the passionate music enthusiast.
           </p>
-          <button className="text-[0.8rem] leading-[1.1rem] tracking-[0.0625rem] font-[700] text-[#FFF] bg-[#D87D4A] px-[1rem] py-[0.9rem] max-w-[10rem] w-full text-center outline-none hover:text-[#FFF] hover:bg-[#FBAF85] ">
-            SEE PRODUCT
-          </button>
+          <Link to="/xx99-mark-two-headphones" className="max-w-[10rem] w-full">
+            <button className="text-[0.8rem] leading-[1.1rem] tracking-[0.0625rem] font-[700] text-[#FFF] bg-[#D87D4A] px-[1rem] py-[0.9rem] max-w-[10rem] w-full text-center outline-none hover:text-[#FFF] hover:bg-[#FBAF85] transition-all duration-300">
+              SEE PRODUCT
+            </button>
+          </Link>
         </div>
       </div>
-      <div className="lg:mb-[12.5rem] lg:px-[10.25rem] md:mb-[6rem] md:px-[2.5rem] flex flex-col items-center px-[1.5rem] mb-[7rem] w-full">
+      <div className="lg:px-[10.25rem] md:px-[2.5rem] flex flex-col items-center px-[1.5rem] w-full">
         <CategoryTypes />
         <div className="lg:flex lg:items-center lg:px-[6rem] lg:pt-[7rem] lg:pb-0 lg:mb-[3rem] bg-[#D87D4A] rounded-lg px-[1.5rem] pb-[3.5rem] mb-[1.5rem] max-w-[69.375rem] w-full bg-[url('/src/assets/home/desktop/pattern-circles.svg')] bg-bottom bg-cover bg-no-repeat group">
           <div className="flex justify-center w-full">
@@ -55,9 +52,11 @@ function Home() {
               Upgrade to premium speakers that are phenomenally built to deliver
               truly remarkable sound.
             </p>
-            <button className="text-[0.8rem] leading-[1.1rem] tracking-[0.0625rem] font-[700] text-[#FFF] bg-[#000] px-[1rem] py-[0.9rem] max-w-[10rem] w-full text-center outline-none hover:text-[#FFF] hover:bg-[#4C4C4CFF] transition-all duration-300">
-              SEE PRODUCT
-            </button>
+            <Link to="/zx9-speaker" className="max-w-[10rem] w-full">
+              <button className="text-[0.8rem] leading-[1.1rem] tracking-[0.0625rem] font-[700] text-[#FFF] bg-[#000] px-[1rem] py-[0.9rem] max-w-[10rem] w-full text-center outline-none hover:text-[#FFF] hover:bg-[#4C4C4CFF] transition-all duration-300">
+                SEE PRODUCT
+              </button>
+            </Link>
           </div>
         </div>
         <div className="lg:px-[6rem] lg:mb-[3rem] lg:bg-[url('/src/assets/home/desktop/image-speaker-zx7.jpg')] md:bg-[url('/src/assets/home/tablet/image-speaker-zx7.jpg')] bg-[#F1F1F1] rounded-lg px-[1.5rem] py-[6.5rem] mb-[1.5rem] max-w-[69.375rem] w-full bg-[url('/src/assets/home/mobile/image-speaker-zx7.jpg')] bg-cover bg-right bg-no-repeat group">
@@ -65,9 +64,11 @@ function Home() {
             <h1 className="text-[1.5rem] leading-[2.4rem] tracking-[0.125rem] font-[700] text-[#000] mb-[2rem] break-world">
               ZX7 SPEAKER
             </h1>
-            <button className="text-[0.8rem] leading-[1.1rem] tracking-[0.0625rem] font-[700] text-[#000] bg-transparent border-[0.15rem] border-[#000] px-[1rem] py-[0.9rem] max-w-[10rem] w-full text-center outline-none hover:text-[#FFF] hover:bg-[#000] transition-all duration-300">
-              SEE PRODUCT
-            </button>
+            <Link to="/zx7-speaker">
+              <button className="text-[0.8rem] leading-[1.1rem] tracking-[0.0625rem] font-[700] text-[#000] bg-transparent border-[0.15rem] border-[#000] px-[1rem] py-[0.9rem] max-w-[10rem] w-full text-center outline-none hover:text-[#FFF] hover:bg-[#000] transition-all duration-300">
+                SEE PRODUCT
+              </button>
+            </Link>
           </div>
         </div>
         <div className="lg:mb-[12.5rem] lg:gap-[1.875rem] md:flex-row md:gap-[0.6875rem] md:mb-[6rem] flex flex-col items-center gap-[1.5rem] max-w-[69.375rem] w-full mb-[7.5rem]">
@@ -87,17 +88,20 @@ function Home() {
             alt="earphonesImgDesktop"
           />
           <div className="lg:px-[6rem] md:px-[2.5rem] md:py-[6.25rem] w-full px-[1.5rem] py-[2.5rem] bg-[#F1F1F1] rounded-lg group">
-            <h1 className="text-[1.5rem] leading-[2.352rem] tracking-[0.125rem] font-[700] text-[#000] mb-[2rem] break-world md:group-hover:translate-x-[1rem] transition-all duration-300">
-              YX1 EARPHONES
-            </h1>
-            <button className="text-[0.8rem] leading-[1.1rem] tracking-[0.0625rem] font-[700] text-[#000] bg-transparent border-[0.15rem] border-[#000] px-[1rem] py-[0.9rem] max-w-[10rem] w-full text-center outline-none hover:text-[#FFF] hover:bg-[#000] md:group-hover:translate-x-[1rem] transition-all duration-300">
-              SEE PRODUCT
-            </button>
+            <div className="md:group-hover:translate-x-[1rem] transition-all duration-300">
+              <h1 className="text-[1.5rem] leading-[2.352rem] tracking-[0.125rem] font-[700] text-[#000] mb-[2rem] break-world ">
+                YX1 EARPHONES
+              </h1>
+              <Link to="/yx1-earphones">
+                <button className="text-[0.8rem] leading-[1.1rem] tracking-[0.0625rem] font-[700] text-[#000] bg-transparent border-[0.15rem] border-[#000] px-[1rem] py-[0.9rem] max-w-[10rem] w-full text-center outline-none hover:text-[#FFF] hover:bg-[#000] transition-all duration-300">
+                  SEE PRODUCT
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
         <Info />
       </div>
-      <Footer />
     </div>
   );
 }
