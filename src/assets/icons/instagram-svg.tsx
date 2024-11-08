@@ -1,4 +1,3 @@
-import * as React from "react";
 import { SVGProps, Ref, forwardRef } from "react";
 const SvgComponent = (
   props: SVGProps<SVGSVGElement>,
