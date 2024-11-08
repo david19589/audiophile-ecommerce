@@ -1,8 +1,8 @@
 import clsx from "clsx";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useCart } from "../../context/cartContext";
-import Finish from "../../components/header/components/cart/components/finish";
+import { useCart } from "../../hooks/use-cart";
+import Finish from "./components/finish";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { schema, FormData } from "../../models/schema";
@@ -81,6 +81,7 @@ function Checkout() {
                     {...register("name")}
                     type="text"
                     id="name"
+                    autoComplete="name"
                     placeholder="Alexei Ward"
                     className={clsx(
                       errors.name
@@ -110,6 +111,7 @@ function Checkout() {
                     {...register("email")}
                     type="email"
                     id="email"
+                    autoComplete="email"
                     placeholder="alexei@mail.com"
                     className={clsx(
                       errors.email
@@ -175,6 +177,7 @@ function Checkout() {
                   {...register("your_address")}
                   type="text"
                   id="address"
+                  autoComplete="address"
                   placeholder="1137 Williams Avenue"
                   className={clsx(
                     errors.your_address
@@ -265,6 +268,7 @@ function Checkout() {
                   {...register("country")}
                   type="text"
                   id="country"
+                  autoComplete="country"
                   placeholder="United States"
                   className={clsx(
                     errors.country

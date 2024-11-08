@@ -1,7 +1,7 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { CartItem } from "../models/types";
 
-type CartContextType = {
+export type CartContextType = {
   cart: CartItem[];
   setCart: (status: CartItem[]) => void;
   warning: boolean;
@@ -12,11 +12,11 @@ type CartContextType = {
   setFinished: (status: boolean) => void;
 };
 
-const CartContext = createContext<CartContextType | undefined>(undefined);
+export const CartContext = createContext<CartContextType | undefined>(
+  undefined
+);
 
-export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [cart, setCart] = useState<CartItem[]>(
     JSON.parse(localStorage.getItem("carts") || "[]")
   );
@@ -38,9 +38,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   const decrement = (id: number) => {
     setCart((prev) => {
       const itemIndex = prev.findIndex((item) => item.id === id);
-      if (itemIndex === -1) {
-        return prev;
-      } else if (prev[itemIndex].quantity === 1) {
+      if (prev[itemIndex].quantity === 1) {
         return prev.filter((item) => item.id !== id);
       } else {
         return prev.map((item) =>
@@ -51,7 +49,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const addToCart = (item: CartItem) => {
-    setCart((prev) => [...prev, { ...item, quantity: 1 }]);
+    setCart((prev) => [...prev, item]);
   };
 
   const handleClick = (item: CartItem) => {
@@ -82,11 +80,4 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
       {children}
     </CartContext.Provider>
   );
-};
-
-// eslint-disable-next-line react-refresh/only-export-components
-export const useCart = (): CartContextType => {
-  const context = useContext(CartContext);
-  if (!context) throw new Error("useCart must be used within a CartProvider");
-  return context;
 };

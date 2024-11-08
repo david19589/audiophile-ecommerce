@@ -4,16 +4,28 @@ import { imageSrc } from "../../models/imports";
 import CategoryTypes from "../../components/category-types";
 import Info from "../../components/info";
 import clsx from "clsx";
-import { useCart } from "../../context/cartContext";
+import { useCart } from "../../hooks/use-cart";
+import { useState } from "react";
 
 function Details() {
-  const { cart, increment, decrement, handleClick } = useCart();
+  const { cart, handleClick } = useCart();
   const { slug } = useParams();
   const itemObj = data.find((item) => item.slug === slug);
   const isAdded = cart.some((product) => product.id === itemObj?.id);
 
-  const cartItem = cart.find((item) => item.id === itemObj?.id);
-  const currentQuantity = cartItem ? cartItem.quantity : 1;
+  const [quantity, setQuantity] = useState(1);
+
+  const decrease = () => {
+    if (!isAdded && quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+
+  const increase = () => {
+    if (!isAdded && quantity < 999) {
+      setQuantity(quantity + 1);
+    }
+  };
 
   return (
     <div className="lg:pt-[10rem] md:pt-[9rem] flex flex-col items-center pt-[7rem] lg:px-[10rem] md:px-[2.5rem] px-[1.5rem] bg-[#FAFAFA]">
@@ -58,13 +70,9 @@ function Details() {
               <div className="w-full flex gap-[1rem] mb-[5rem]">
                 <div className="flex justify-between p-[1rem] bg-[#F1F1F1] max-w-[7.5rem] w-full">
                   <button
-                    onClick={() => {
-                      if (!isAdded) {
-                        decrement(itemObj.id);
-                      }
-                    }}
+                    onClick={decrease}
                     className={clsx(
-                      currentQuantity < 2 && "cursor-default",
+                      quantity < 2 && "cursor-default",
                       isAdded && "cursor-default",
                       "text-[0.9rem] leading-[1.1rem] tracking-[0.0625rem] text-[#000] opacity-[25%] outline-none select-none"
                     )}
@@ -72,16 +80,12 @@ function Details() {
                     -
                   </button>
                   <h2 className="text-[0.9rem] leading-[1.1rem] tracking-[0.0625rem] text-[#000]">
-                    {currentQuantity}
+                    {quantity}
                   </h2>
                   <button
-                    onClick={() => {
-                      if (!isAdded) {
-                        increment(itemObj.id);
-                      }
-                    }}
+                    onClick={increase}
                     className={clsx(
-                      currentQuantity > 999 && "cursor-default",
+                      quantity > 999 && "cursor-default",
                       isAdded && "cursor-default",
                       "text-[0.9rem] leading-[1.1rem] tracking-[0.0625rem] text-[#000] opacity-[25%] outline-none select-none"
                     )}
@@ -92,7 +96,7 @@ function Details() {
                 <button
                   onClick={() => {
                     if (itemObj) {
-                      handleClick({ ...itemObj, quantity: 1 });
+                      handleClick({ ...itemObj, quantity });
                     }
                   }}
                   className="text-[0.8rem] leading-[1.1rem] tracking-[0.0625rem] font-[700] text-[#FFF] bg-[#D87D4A] px-[1rem] py-[0.9rem] max-w-[10rem] w-full text-center outline-none hover:text-[#FFF] hover:bg-[#FBAF85] transition-all duration-300"

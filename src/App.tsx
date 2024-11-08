@@ -2,7 +2,8 @@ import { BrowserRouter } from "react-router-dom";
 import PageRoutes from "./routing/routes";
 import Header from "./components/header";
 import Footer from "./components/footer";
-import { CartProvider, useCart } from "./context/cartContext";
+import { CartProvider } from "./context/cartContext";
+import { useCart } from "./hooks/use-cart";
 
 function CartWarning() {
   const { warning } = useCart();
@@ -19,12 +20,10 @@ function App() {
   return (
     <CartProvider>
       <BrowserRouter>
-        <div>
-          <Header />
-          <CartWarning />
-          <PageRoutes />
-          <Footer />
-        </div>
+        <Header />
+        <CartWarning />
+        <PageRoutes />
+        <Footer />
       </BrowserRouter>
     </CartProvider>
   );

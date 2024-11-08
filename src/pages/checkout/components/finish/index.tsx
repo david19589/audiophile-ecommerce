@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import confirmationIcon from "../../../../../../assets/checkout/icon-order-confirmation.svg";
-import { useCart } from "../../../../../../context/cartContext";
+import confirmationIcon from "../../../../assets/checkout/icon-order-confirmation.svg";
+import { useCart } from "../../../../hooks/use-cart";
 import { useState } from "react";
 import clsx from "clsx";
 
@@ -8,9 +8,13 @@ function Finish(props: { price: number }) {
   const { cart, setCart, setFinished } = useCart();
   const [viewList, setViewList] = useState(false);
 
+  const reset = () => {
+    setCart([]);
+    setFinished(false);
+  };
   return (
-    <div className="flex justify-center items-center fixed top-[5.6rem] left-0 right-0 bottom-0 z-10 bg-[#000000c5] px-[1.5rem]">
-      <div className="md:px-[3rem] bg-[#FFF] p-[2rem] rounded-lg max-w-[38rem] w-full">
+    <div className="flex justify-center items-center fixed top-0 left-0 right-0 bottom-0 z-30 bg-[#000000c5] px-[1.5rem]">
+      <div className="md:px-[3rem] bg-[#FFF] p-[2rem] rounded-lg max-w-[40rem] w-full">
         <img
           src={confirmationIcon}
           alt="confirmationIcon"
@@ -121,10 +125,7 @@ function Finish(props: { price: number }) {
         </div>
         <Link to="/">
           <button
-            onClick={() => {
-              setCart([]);
-              setFinished(false);
-            }}
+            onClick={reset}
             className="text-[0.9rem] leading-[1.1rem] tracking-[0.0625rem] font-[700] text-[#FFF] bg-[#D87D4A] px-[1rem] py-[0.9rem] w-full text-center outline-none hover:bg-[#FBAF85] transition-all duration-300"
           >
             BACK TO HOME
