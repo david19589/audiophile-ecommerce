@@ -12,7 +12,7 @@ function Header() {
   const [openMenu, setOpenMenu] = useState(false);
   const [openCart, setOpenCart] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { cart, finished } = useCart();
+  const { cart } = useCart();
 
   const handleScroll = () => {
     if (window.scrollY > 0) {
@@ -28,24 +28,6 @@ function Header() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  useEffect(() => {
-    if (openMenu || openCart || finished) {
-      const scrollY = window.scrollY;
-      document.body.style.position = "fixed";
-      document.body.style.height = "-webkit-fill-available";
-      document.body.style.top = `-${scrollY}px`;
-    } else {
-      const scrollY = document.body.style.top;
-      document.body.style.position = "unset";
-      document.body.style.top = "unset";
-      window.scrollTo(0, parseInt(scrollY || "0") * -1);
-    }
-    return () => {
-      document.body.style.position = "unset";
-      document.body.style.height = "unset";
-    };
-  }, [openMenu, openCart, finished]);
 
   const resetStates = () => {
     setOpenMenu(false);
@@ -77,7 +59,12 @@ function Header() {
             />
           </button>
           <Link to="/">
-            <img onClick={resetStates} className="md:flex hidden select-none" src={logo} alt="logo" />
+            <img
+              onClick={resetStates}
+              className="md:flex hidden select-none"
+              src={logo}
+              alt="logo"
+            />
           </Link>
         </div>
         <div className="lg:flex hidden gap-[2rem]">
@@ -118,7 +105,7 @@ function Header() {
         onClick={resetStates}
         className={clsx(
           openMenu || openCart ? "opacity-1 z-10" : "opacity-0 z-[-10]",
-          "fixed top-[6.75rem] bottom-0 left-0 right-0 h-[100vh] bg-[#000000c5] z-20 transition-all duration-200"
+          "fixed top-[6.60rem] bottom-0 left-0 right-0 h-[100vh] bg-[#000000c5] z-20 transition-all duration-200"
         )}
       />
     </>

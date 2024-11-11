@@ -26,7 +26,7 @@ function Cart(props: {
     <div
       className={clsx(
         props.openCart ? "translate-x-0" : "translate-x-[40rem]",
-        "lg:mr-[10rem] md:px-[2.5rem] md:mr-[2.5rem] bg-[#FFF] max-w-[23.5rem] w-full gap-[0.625rem] p-[2rem] mt-[2rem] mx-[1.5rem] rounded-lg z-30 fixed top-[6.75rem] right-0 transition-all duration-200"
+        "lg:mr-[10rem] md:px-[2.5rem] md:mr-[2.5rem] md:w-full bg-[#FFF] max-w-[23.5rem] w-[86%] p-[2rem] mt-[2rem] rounded-lg z-30 fixed top-[6.75rem] right-[1.5rem] transition-all duration-200"
       )}
     >
       <div className="flex justify-between gap-[0.5rem] mb-[2rem]">

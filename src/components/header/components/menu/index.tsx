@@ -12,8 +12,8 @@ function Menu(props: {
   return (
     <div
       className={clsx(
-        props.openMenu ? "translate-y-0" : "translate-y-[-40rem]",
-        "md:flex md:py-[5rem] bg-[#FFF] w-full gap-[0.625rem] pt-[4rem] pb-[2rem] px-[1.5rem] top-[6.85rem] z-30 fixed left-0 right-0 transition-all duration-200"
+        props.openMenu ? "translate-y-0" : "translate-y-[-80rem]",
+        "md:flex md:py-[5rem] md:h-max bg-[#FFF] w-full h-[46rem] gap-[0.625rem] pt-[4rem] pb-[2rem] px-[1.5rem] top-[6.85rem] z-30 fixed left-0 right-0 transition-all duration-200 overflow-y-scroll custom-scrollbar"
       )}
     >
       <Link

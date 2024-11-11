@@ -26,6 +26,12 @@ function Details() {
       setQuantity(quantity + 1);
     }
   };
+  const addItem = () => {
+    if (itemObj) {
+      handleClick({ ...itemObj, quantity });
+    }
+    setQuantity(1);
+  };
 
   return (
     <div className="lg:pt-[10rem] md:pt-[9rem] flex flex-col items-center pt-[7rem] lg:px-[10rem] md:px-[2.5rem] px-[1.5rem] bg-[#FAFAFA]">
@@ -94,11 +100,7 @@ function Details() {
                   </button>
                 </div>
                 <button
-                  onClick={() => {
-                    if (itemObj) {
-                      handleClick({ ...itemObj, quantity });
-                    }
-                  }}
+                  onClick={addItem}
                   className="text-[0.8rem] leading-[1.1rem] tracking-[0.0625rem] font-[700] text-[#FFF] bg-[#D87D4A] px-[1rem] py-[0.9rem] max-w-[10rem] w-full text-center outline-none hover:text-[#FFF] hover:bg-[#FBAF85] transition-all duration-300"
                 >
                   ADD TO CART
