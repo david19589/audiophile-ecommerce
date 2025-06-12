@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { schema, FormData } from "../../models/schema";
 import deliveryIcon from "../../assets/checkout/icon-cash-on-delivery.svg";
+import { imageSrc } from "../../models/imports";
 
 function Checkout() {
   const { cart, finished, setFinished } = useCart();
@@ -428,7 +429,7 @@ function Checkout() {
                     <div className="flex gap-[1rem]">
                       <img
                         className="w-[4rem] rounded-lg"
-                        src={item.image.mobile}
+                        src={imageSrc[item.image.mobile]}
                         alt={item.name}
                       />
                       <div className="flex flex-col items-start">

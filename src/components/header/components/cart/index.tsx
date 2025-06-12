@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { useCart } from "../../../../hooks/use-cart";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { imageSrc } from "../../../../models/imports";
 
 function Cart(props: {
   openCart: boolean;
@@ -51,7 +52,7 @@ function Cart(props: {
             <div className="flex gap-[1rem]">
               <img
                 className="w-[4rem] rounded-lg"
-                src={item.image.mobile}
+                src={imageSrc[item.image.mobile]}
                 alt={item.name}
               />
               <div className="flex flex-col items-start">

@@ -3,6 +3,7 @@ import confirmationIcon from "../../../../assets/checkout/icon-order-confirmatio
 import { useCart } from "../../../../hooks/use-cart";
 import { useState } from "react";
 import clsx from "clsx";
+import { imageSrc } from "../../../../models/imports";
 
 function Finish(props: { price: number }) {
   const { cart, setCart, setFinished } = useCart();
@@ -43,7 +44,7 @@ function Finish(props: { price: number }) {
                     <div className="flex gap-[1rem]">
                       <img
                         className="w-[4rem] rounded-lg"
-                        src={item.image.mobile}
+                        src={imageSrc[item.image.mobile]}
                         alt={item.name}
                       />
                       <div className="flex flex-col items-start">
@@ -68,7 +69,7 @@ function Finish(props: { price: number }) {
                 <div className="md:items-start flex items-center gap-[1rem]">
                   <img
                     className="sm:w-[4rem] sm:h-[4rem] w-[2rem] h-[2rem] rounded-lg"
-                    src={cart[0].image.mobile}
+                    src={imageSrc[cart[0].image.mobile]}
                     alt={cart[0].name}
                   />
                   <div className="flex flex-col items-start">
